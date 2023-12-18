@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-
+import java.sql.*;
 public class PageConnexion {
 
 	private JFrame frmPageDeConnexion;
@@ -52,12 +52,12 @@ public class PageConnexion {
 	 */
 	private void initialize() {
 		frmPageDeConnexion = new JFrame();
-		frmPageDeConnexion.getContentPane().setBackground(Color.decode("#04224c"));
+		frmPageDeConnexion.getContentPane().setBackground(new Color(245, 245, 245));
 		frmPageDeConnexion.setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/mouhamadoumansourndiaye/Desktop/MouhamadouMansourNdiaye-BabacarWade(MICDA_VOYAGES)/MICDA-VOYAGES.png"));
 		//frmPageDeConnexion.setFont(new Font("Dialog", Font.PLAIN, 20));
 		//frmPageDeConnexion.setAlwaysOnTop(true);
 		frmPageDeConnexion.setTitle("Page de Connexion MICDA VOYAGE");
-		frmPageDeConnexion.setBackground(Color.decode("#04224c"));
+		frmPageDeConnexion.setBackground(Color.decode("#ffffff"));
 		frmPageDeConnexion.setSize(1800, 800);
 		
 		//frmPageDeConnexion.setBounds(100, 100, 564, 572);
@@ -65,48 +65,44 @@ public class PageConnexion {
 		frmPageDeConnexion.getContentPane().setLayout(null);
 		
 		
-		JPanel Title = new JPanel();
-		Title.setBackground(Color.decode("#3cc2f6"));
-		Title.setToolTipText("");
-		Title.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		Title.setBounds(500, 20, 550, 60);
-		frmPageDeConnexion.getContentPane().add(Title);
-		Title.setLayout(null);
+		JPanel Input = new JPanel();
 		
-		JLabel lblNewLabel = new JLabel("Page Connexion MICDA VOYAGE");
+		JLabel lblNewLabel = new JLabel("MICDA VOYAGE");
 		lblNewLabel.setForeground(Color.decode("#ffffff"));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Lao MN", Font.PLAIN, 30));
-		lblNewLabel.setBounds(15, 10, 540, 56);
+		lblNewLabel.setBounds(0, 50, 540, 56);
 		lblNewLabel.setBackground(Color.decode("#fff"));
-		Title.add(lblNewLabel);
+		Input.add(lblNewLabel);
 		
-		JPanel Input = new JPanel();
-		Input.setBackground(Color.decode("#3cc2f6"));
-		Input.setBorder(new LineBorder(Color.decode("#04224c"), 1, true));
-		Input.setBounds(350, 320, 800, 300);
+		
+		Input.setBackground(Color.decode("#04224c"));
+		Input.setBorder(new LineBorder(new Color(4, 34, 76), 1, true));
+		Input.setBounds(500, 50, 500, 650);
 		frmPageDeConnexion.getContentPane().add(Input);
 		Input.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Username : ");
+		lblNewLabel_1.setForeground(Color.decode("#ffffff"));
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(200, 27, 127, 33);
+		lblNewLabel_1.setBounds(70, 250, 127, 33);
 		Input.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Password : ");
+		lblNewLabel_1_1.setForeground(Color.decode("#ffffff"));
 		lblNewLabel_1_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel_1_1.setBounds(200, 103, 127, 33);
+		lblNewLabel_1_1.setBounds(70, 350, 127, 33);
 		Input.add(lblNewLabel_1_1);
 		
 		txtUsername = new JTextField();
 		txtUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		txtUsername.setBounds(300, 27, 260, 35);
+		txtUsername.setBounds(175, 250, 260, 35);
 		Input.add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		txtPassword = new JPasswordField();
 		txtPassword.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		txtPassword.setBounds(300, 103, 260, 35);
+		txtPassword.setBounds(175, 350, 260, 35);
 		Input.add(txtPassword);
 		frmPageDeConnexion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JButton btnNewButton = new JButton("Connexion");
@@ -117,7 +113,28 @@ public class PageConnexion {
 		
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnNewButton.setBounds(350, 200, 150, 41);
+		btnNewButton.setBounds(200, 450, 150, 41);
 		Input.add(btnNewButton);
+		
+		
+		//Connexion bd
+		try {
+			//charger le serveur
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//creer la connexion
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/micda_voyage", "root", "root");
+			//creer un etat de connexion
+			Statement st = con.createStatement();
+			//creer est excuter une requete de selection
+			ResultSet res = st.executeQuery("select * from Users");
+			//parcour des donnees
+			while(res.next()) {
+				System.out.println("Nom = "+res.getString(2));
+			}
+		}catch(Exception e) {
+			System.out.println(
+					"ERROR :"+e.getMessage());
+		}
+		
 	}
 }
