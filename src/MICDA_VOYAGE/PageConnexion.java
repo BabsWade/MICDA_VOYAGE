@@ -55,13 +55,13 @@ public class PageConnexion {
 		frmPageDeConnexion = new JFrame();
 		frmPageDeConnexion.getContentPane().setBackground(new Color(245, 245, 245));
 		frmPageDeConnexion.setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/mouhamadoumansourndiaye/Desktop/MouhamadouMansourNdiaye-BabacarWade(MICDA_VOYAGES)/MICDA-VOYAGES.png"));
-		//frmPageDeConnexion.setFont(new Font("Dialog", Font.PLAIN, 20));
-		//frmPageDeConnexion.setAlwaysOnTop(true);
+		frmPageDeConnexion.setFont(new Font("Dialog", Font.PLAIN, 20));
+		frmPageDeConnexion.setAlwaysOnTop(true);
 		frmPageDeConnexion.setTitle("Page de Connexion MICDA VOYAGE");
-		frmPageDeConnexion.setBackground(Color.decode("#ffffff"));
+		frmPageDeConnexion.setBackground(new Color(245, 245, 245));
 		frmPageDeConnexion.setSize(1800, 800);
 		
-		//frmPageDeConnexion.setBounds(100, 100, 564, 572);
+		frmPageDeConnexion.setBounds(100, 100, 564, 572);
 		
 		frmPageDeConnexion.getContentPane().setLayout(null);
 		
