@@ -49,7 +49,7 @@ public class PageConnexion {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents.
 	 */
 	private void initialize() {
 		frmPageDeConnexion = new JFrame();
